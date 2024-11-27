@@ -16,11 +16,11 @@ lab:
 
 このラボでは、管理タスク用に環境を構成して準備します。 必要な機能をアクティブ化し、管理アクセス許可を設定し、主要な要素を適切に構成します。
 
-**タスク:**
+**タスク**:
 
 - Microsoft Purview ポータルで監査を有効にする
-- Microsoft Teams で名前による検索を有効にする
-- SharePoint Online と OneDrive で情報バリアを有効にする
+- 演習 1 - コンプライアンス ロールを割り当てる
+- Microsoft Purview ポータルについて調べる
 
 ## タスク - Microsoft Purview ポータルで監査を有効にする
 
