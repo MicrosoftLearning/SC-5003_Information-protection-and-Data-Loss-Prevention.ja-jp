@@ -17,71 +17,19 @@ lab:
 
 ## タスク 1 - SharePoint と OneDrive での秘密度ラベルのサポートを有効にする
 
-このタスクでは、必要なモジュールをインストールし、テナントで秘密度ラベルのサポートを有効にします。 これは、この演習の後半で秘密度ラベルを適用する省略可能なタスクに必要です。
+このタスクでは、秘密度ラベルの共同編集を有効にします。これにより、SharePoint と OneDrive のファイルの秘密度ラベルも有効になります。
 
-1. タスク バーの Windows ボタンを右クリックして、管理者特権の PowerShell ウィンドウを開き、**[ターミナル (管理者)]** を選択します。
+1. **Microsoft Edge** を開き、`https://purview.microsoft.com` に移動します。
 
-1. **[ユーザー アカウント制御]** ウィンドウで、**[はい]** を選択して確定します。
+1. 左側のナビゲーションで、**[設定]** > **[情報保護]** を選択します。
 
-1. **Install-Module** コマンドレットを実行して、最新の MS Online PowerShell モジュール バージョンをインストールします。
+1. **[情報保護] の設定**で、**[秘密度ラベルが付いたファイルの共同編集]** タブが表示されていることを確認します。
 
-    ```powershell
-    Install-Module -Name MSOnline
-    ```
+1. **[秘密度ラベルが付いたファイルの共同編集を有効にする]** チェック ボックスをオンにします。
 
-1. NuGet セキュリティ ダイアログと信頼されていないレポジトリ セキュリティ ダイアログを **Y** (はい) で確認し、Enter キーを押します。 この処理が完了するまでしばらく時間がかかる場合があります。
+1. 画面の下部にある **[適用]** を選択します。
 
-1. **Install-Module** を実行して、SharePoint Online PowerShell モジュールの最新バージョンをインストールします。
-
-    ```powershell
-    Install-Module -Name Microsoft.Online.SharePoint.PowerShell
-    ```
-
-1. 信頼されていないリポジトリ セキュリティ ダイアログで "はい" の **Y** を入力して確認し、Enter キーを押します。
-
-1. **Connect-MsolService** を実行し、MS Online サービスに接続します。
-
-    ```powershell
-    Connect-MsolService
-    ```
-
-1. **[アカウントへのサインイン]** フォームで、前の演習で**コンプライアンス管理者**に選択したユーザーとしてサインインします。
-
-1. サインインした後、ターミナル ウィンドウに戻ります。
-
-1. **Get-Msoldomain** コマンドレットを実行し、ドメインを変数として保存します。
-
-    ```powershell
-    $domain = get-msoldomain
-    ```
-
-1. 前の手順で作成した _$domain_ 変数を使用して、_$adminurl_ の新しい変数を作成します。
-
-    ```powershell
-    $adminurl = "https://" + $domain.Name.split('.')[0] + "-admin.sharepoint.com"
-    ```
-
-1. 前の手順で作成した _$adminurl_ 変数を使用して、**Connect-SPOService** コマンドレットを実行します。
-
-    ```powershell
-    Connect-SPOService -url $adminurl
-    ```
-
-1. **[アカウントにサインイン]** フォームで、**全体管理者**としてサインインします。
-
-1. サインインした後、ターミナル ウィンドウに戻ります。
-
-1. **Set-SPOTenant** のコマンドレットを実行入力し、秘密度ラベルのサポートを有効にします。
-
-    ```powershell
-    Set-SPOTenant -EnableAIPIntegration $true
-    ```
-
-1. "はい" の **Y** を入力して確認し、Enter キーを押します。
-
-1. PowerShell ウィンドウを閉じます。
-
-これで、Teams および SharePoint サイトでの秘密度ラベルのサポートが有効になりました。
+これで、SharePoint および OneDrive での秘密度ラベルのサポートが有効になりました。
 
 ## タスク 2 – 秘密度ラベルを作成する
 
