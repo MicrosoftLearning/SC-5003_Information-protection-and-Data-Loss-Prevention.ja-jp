@@ -24,11 +24,17 @@ lab:
 
 ## タスク - Microsoft Purview ポータルで監査を有効にする
 
-このタスクでは、Microsoft Purview ポータルで監査を有効にして、ポータル アクティビティを監視します。 これらのラボの演習では、自動ラベル付けポリシーを作成するために監査が必要です。
+このタスクでは、Microsoft Purview ポータルで監査を有効にして、ポータル アクティビティを監視します。
 
-1. Microsoft Edge で、Microsoft Purview ポータル (`https://purview.microsoft.com`) に移動して、**全体管理者**権限を持つユーザーとしてログインします。
+1. **管理者**アカウントを使用して Client 1 VM (SC-401-CL1) にログインします。
 
-1. 新しい Microsoft Purview ポータルに関するメッセージが画面に表示されます。 データ フローの開示条件とプライバシーに関する声明に同意する選択肢を選択し、**[今すぐ試す]** を選択します。
+1. Microsoft Edge を開きます。
+
+1. **Microsoft Edge** で、`https://purview.microsoft.com` に移動し、**MOD 管理者**である`admin@WWLxZZZZZZ.onmicrosoft.com` としてサインインします (この ZZZZZZ は、ラボ ホスティング プロバイダーから提供された自分専用のテナント プレフィックスです)。 管理者のパスワードは、ラボ ホスティング プロバイダーから支給されます。
+
+1. Microsoft Edge で、Microsoft Purview ポータル`https://purview.microsoft.com` にアクセスして、ログインします。
+
+1. 新しい Microsoft Purview ポータルに関するメッセージが画面に表示されます。 **[はじめに]** を選択して、新しいポータルにアクセスします。
 
     ![[ようこそ新しい Microsoft Purview ポータルへ] 画面のスクリーンショット。](../Media/welcome-purview-portal.png)
 
@@ -40,18 +46,57 @@ lab:
 
 1. このオプションを選択すると、このページに青いバーが表示されなくなるはずです。
 
->[警告] この演習で監査を有効にするエラーが発生した場合は、これらの手順を回避策として使用してください。
->1. マウスの右ボタンで Windows ボタンを選択して管理者特権のターミナル ウィンドウを開いてから、[ターミナル (管理者)] を選択します。
->1. `Install-Module -Name ExchangeOnlineManagement` を実行して ExchangeOnlineManagement モジュールをインストールします　
->1. `Connect-ExchangeOnline` を実行して ExchangeOnlineManagement に接続します
->1. メッセージが表示されたら、ラボ ホスティング プロバイダーから管理者のユーザー名とパスワードを入力してログインします。
->1. 監査が有効になっているかどうかを確認するには、`Get-AdminAuditLogConfig | FL UnifiedAuditLogIngestionEnabled` を実行します
->1. false の場合、監査ログはオフになります。
->1. 監査を有効にするには、`Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true` を実行します
->   1. 組織内でスクリプトを実行できないというエラーが表示された場合は、`Enable-OrganizationCustomization` を実行します
->   1. もう一度 `Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true` の実行をお試しください
->1. 監査が有効になっていることを確認するには、`Get-AdminAuditLogConfig | FL UnifiedAuditLogIngestionEnabled` を実行します
->1. 完了したら、`Disconnect-ExchangeOnline` を実行してセッションを終了します
+    >[!Note] **注:[監査] ボタンでログが有効にならない場合**
+    >
+    >一部のテナントでは、**[ユーザーと管理者のアクティビティの記録を開始する]** を選択しても監査が有効にならないことがあります。  
+    >
+    >このような場合は、代わりに PowerShell を使用して監査を有効にすることができます。
+    >
+    >1. Windows ボタンを右クリックし、**[ターミナル (管理者)]** を選択して、管理者特権のターミナル ウィンドウを開きます。  
+    >
+    >1. 最新の**Exchange Online PowerShell** モジュールをインストールします。
+    >
+    >     ```powershell
+    >     Install-Module ExchangeOnlineManagement
+    >     ```
+    >
+    >     すべてのプロンプトに対して「**Y**」(Yes を示します) と入力し、**Enter** キーを押します。
+    >
+    >1. 次のコマンドを実行して、実行ポリシーを変更します。
+    >
+    >     ```powershell
+    >     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    >     ```
+    >
+    >1. 管理者特権のターミナル ウィンドウを閉じて、通常の PowerShell セッションを開きます。
+    >
+    >1. Exchange Online に接続します。
+    >
+    >     ```powershell
+    >     Connect-ExchangeOnline
+    >     ```
+    >
+    >    `admin@WWLxZZZZZZ.onmicrosoft.com` としてサインインします (この ZZZZZZ は、ラボ ホスティング プロバイダーから提供された自分専用のテナント プレフィックスです)。 管理者のパスワードは、ラボ ホスティング プロバイダーから支給されます。
+    >
+    >1. [監査] が有効になっているかどうかを確認します。
+    >
+    >     ```powershell
+    >     Get-AdminAuditLogConfig | FL UnifiedAuditLogIngestionEnabled
+    >     ```
+    >
+    >    **_False_** が返された場合は、[監査] を有効にします。
+    >
+    >     ```powershell
+    >     Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true
+    >     ```
+    >
+    >1. 有効になっていることを確認します。
+    >
+    >     ```powershell
+    >     Get-AdminAuditLogConfig | FL UnifiedAuditLogIngestionEnabled
+    >     ```
+    >
+    >    [監査] が有効になると、このコマンドにより**_True_** が返されます。
 
 Microsoft 365 で監査を正常に有効にしました。
 
@@ -59,7 +104,7 @@ Microsoft 365 で監査を正常に有効にしました。
 
 このタスクでは、これらのラボ演習で使用するユーザーに**コンプライアンス管理者**を割り当てます。
 
-1. **Microsoft Edge** を開き、Windows 365 管理センター (`https://admin.microsoft.com`) に移動します。 **全体管理者**権限を持つユーザーとしてログインする必要があります。
+1. **Microsoft Edge** を開き、Microsoft 365 管理センター (`https://admin.microsoft.com`) に移動します。 **全体管理者**権限を持つユーザーとしてログインする必要があります。
 
 1. 左サイドバーで **[ユーザー]** を展開し、**[アクティブ ユーザー]** を選択します。
 
@@ -83,7 +128,7 @@ Microsoft 365 で監査を正常に有効にしました。
 
 このタスクでは、Microsoft Purview ポータルを探索するために、**コンプライアンス管理者**ロールを以前に付与したユーザーとしてサインインします。 このロールは、次のラボと演習で**コンプライアンス管理者**と呼ばれます。
 
-1. **Microsoft Edge** で、 **`https://purview.microsoft.com`** に移動します。
+1. **Microsoft Edge** で、**`https://purview.microsoft.com`** に移動します。
 
 1. **[アカウントを選択]** ウィンドウが表示されたら、**[別のアカウントを使用]** を選択します。
 
