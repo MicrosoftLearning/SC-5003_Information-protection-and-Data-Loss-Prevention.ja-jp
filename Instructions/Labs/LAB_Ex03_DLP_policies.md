@@ -2,9 +2,14 @@
 lab:
   task: Create a data loss prevention (DLP) policy
   exercise: Exercise 3 - Create a data loss prevention (DLP) policy
+  title: データ損失防止 (DLP) ポリシーを作成する
+  description: シミュレーション モードやポリシーの適用など、Microsoft Purview と PowerShell を使って DLP ポリシーを作成、変更、アクティブ化します。
+  duration: 90 minutes
+  level: 200
+  islab: true
 ---
 
-# スキル タスク
+# データ損失防止 (DLP) ポリシーを作成する
 
 **タスク**:
 

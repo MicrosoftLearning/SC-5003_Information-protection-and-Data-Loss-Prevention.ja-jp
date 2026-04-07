@@ -2,6 +2,11 @@
 lab:
   task: Prepare your environment for administration
   exercise: Exercise 0 - Prepare your environment for administration
+  title: 管理のために環境を準備する
+  description: 監査を有効にし、コンプライアンス ロールを割り当て、Microsoft Purview ポータルを調べて、管理タスク用に環境を準備します。
+  duration: 45 minutes
+  level: 100
+  islab: true
 ---
 
 ## WWL テナント - 使用条件
@@ -12,7 +17,7 @@ lab:
 
 テナントを有料サブスクリプションに変換することはできません。 このコースの一環として取得したテナントは Microsoft Corporation の財産のままであり、当社はいつでもアクセス権とリポジトリを取得する権利を留保します。
 
-# ラボのセットアップ: 管理のための環境の準備
+# ラボ セットアップ: 管理のための環境の準備
 
 このラボでは、管理タスク用に環境を構成して準備します。 必要な機能をアクティブ化し、管理アクセス許可を設定し、主要な要素を適切に構成します。
 
@@ -30,9 +35,9 @@ lab:
 
 1. Microsoft Edge を開きます。
 
-1. **Microsoft Edge** で、`https://purview.microsoft.com` に移動し、**MOD 管理者**である`admin@WWLxZZZZZZ.onmicrosoft.com` としてサインインします (この ZZZZZZ は、ラボ ホスティング プロバイダーから提供された自分専用のテナント プレフィックスです)。 管理者のパスワードは、ラボ ホスティング プロバイダーから支給されます。
+1. **Microsoft Edge** で、`https://purview.microsoft.com` に移動し、**MOD 管理者**である `admin@WWLxZZZZZZ.onmicrosoft.com` としてサインインします (この ZZZZZZ は、ラボ ホスティング プロバイダーから提供された自分専用のテナント プレフィックスです)。 管理者のパスワードは、ラボ ホスティング プロバイダーから支給されます。
 
-1. Microsoft Edge で、Microsoft Purview ポータル`https://purview.microsoft.com` にアクセスして、ログインします。
+1. Microsoft Edge で、Microsoft Purview ポータル `https://purview.microsoft.com` にアクセスして、ログインします。
 
 1. 新しい Microsoft Purview ポータルに関するメッセージが画面に表示されます。 **[はじめに]** を選択して、新しいポータルにアクセスします。
 
@@ -54,7 +59,7 @@ lab:
     >
     >1. Windows ボタンを右クリックし、**[ターミナル (管理者)]** を選択して、管理者特権のターミナル ウィンドウを開きます。  
     >
-    >1. 最新の**Exchange Online PowerShell** モジュールをインストールします。
+    >1. 最新の **Exchange Online PowerShell** モジュールをインストールします。
     >
     >     ```powershell
     >     Install-Module ExchangeOnlineManagement
@@ -96,7 +101,7 @@ lab:
     >     Get-AdminAuditLogConfig | FL UnifiedAuditLogIngestionEnabled
     >     ```
     >
-    >    [監査] が有効になると、このコマンドにより**_True_** が返されます。
+    >    [監査] が有効になると、このコマンドにより **_True_** が返されます。
 
 Microsoft 365 で監査を正常に有効にしました。
 
@@ -128,7 +133,7 @@ Microsoft 365 で監査を正常に有効にしました。
 
 このタスクでは、Microsoft Purview ポータルを探索するために、**コンプライアンス管理者**ロールを以前に付与したユーザーとしてサインインします。 このロールは、次のラボと演習で**コンプライアンス管理者**と呼ばれます。
 
-1. **Microsoft Edge** で、**`https://purview.microsoft.com`** に移動します。
+1. **Microsoft Edge** で、 **`https://purview.microsoft.com`** に移動します。
 
 1. **[アカウントを選択]** ウィンドウが表示されたら、**[別のアカウントを使用]** を選択します。
 
