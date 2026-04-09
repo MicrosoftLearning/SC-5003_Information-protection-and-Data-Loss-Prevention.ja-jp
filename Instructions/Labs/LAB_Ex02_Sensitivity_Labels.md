@@ -2,9 +2,14 @@
 lab:
   task: Create and publish a sensitivity label
   exercise: Exercise 2 - Create and publish a sensitivity label
+  title: 秘密度ラベルを作成して発行する
+  description: 機密ラベルを作成して整理し、ユーザーに公開して、機密コンテンツを保護するように自動ラベル付けを構成します。
+  duration: 90 minutes
+  level: 200
+  islab: true
 ---
 
-# スキル タスク
+# 秘密度ラベルを作成して発行する
 
 あなたの仕事は、機密性のレベルと必要なアクセス制御に従って機密データを分類して保護する秘密度ラベルを組織内で作成し、公開することです。
 
